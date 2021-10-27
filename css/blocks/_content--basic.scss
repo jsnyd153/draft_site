@@ -1,0 +1,15 @@
+@use '../abstracts' as *;
+//================================================
+// Content Basic
+//================================================
+
+.content--basic {
+
+	grid-row-gap: var(--gap);
+	padding-top: var(--gap);
+	padding-bottom: var(--gap);
+
+
+}
+
+

@@ -1,0 +1,87 @@
+@use '../abstracts' as *;
+
+//================================================
+// project--end
+//================================================
+
+
+// This needs to be fixed on mobile
+
+.project--end{
+	padding-top: calc(var(--gap) * 3);
+	padding-bottom: calc(var(--gap) * 3);
+	overflow: hidden;
+
+	.block{
+		>.content{
+				width: 100%;
+				display: grid;
+				grid-gap: var(--gap);
+				grid-template-columns: 1fr;
+				@include md() {
+					grid-template-columns: 2fr 8fr 2fr ;
+				}
+				a{
+					display: block;
+					text-decoration: none;
+					padding:var(--gap) 0;
+					.text_area{
+						.content{
+							h2{
+								div{
+									font-size: 1.5em;
+									@include md() {
+										font-size: 1em;
+									}
+									position: relative;
+									//sets position using inline cusotm property
+									left: var(--x_position);
+									svg{
+										height: .5em;
+									}
+								}
+							}//h2
+						}
+					}//text_area
+				}//a
+			//line between the elements
+			span{
+				display: block;
+				height: 0.125rem;
+				width: 100%;
+				max-width: 100%;
+				background: var(--text_color_primary);
+				margin: auto 0;
+			}
+		}
+	}//block
+}//project--end
+
+
+#link_next{
+	.text_area{
+		.content{
+			h2{
+				text-align: right;
+				div{
+					left:auto;
+					right: var(--x_position);
+				}
+			}
+		}
+	}
+}
+
+#link_back, #link_next{
+	*{
+		transition:.3s all;
+	}
+	&:hover{
+		.layer-1{
+			transform:translateX(-10%);
+		}
+		.layer-2{
+			transform:translateX(10%);
+		}
+	}
+}

@@ -1,0 +1,149 @@
+@use '../abstracts' as *;
+
+//================================================
+//================================================
+// image--slider
+//================================================
+//================================================
+
+.image--slider {
+	padding: var(--gap) 0;
+	grid-row-gap: 0;
+
+	.slider_block {
+		width: 100%;
+		grid-column: 1 / -1;
+		overflow: hidden;
+		@include lg() {
+			grid-column: 2 / span 11;
+		}
+	}
+	.buttons_container {
+		grid-column: 1 / -1;
+		grid-row: 3;
+		align-items: center;
+		@include flex_center_horizontal();
+
+		@include lg() {
+			grid-column: span 1;
+			flex-direction: column;
+			grid-row: auto;
+		}
+		&.playing {
+			button.play_button {
+				transform: scale(0);
+				max-width: 0;
+				max-height: 0;
+				margin-right: 0;
+				margin: 0;
+				padding: 0;
+			}
+		} //playing
+		&.paused {
+			button.pause_button {
+				transform: scale(0);
+				max-width: 0;
+				max-height: 0;
+				margin-right: 0;
+				margin: 0;
+				padding: 0;
+			}
+		} //paused
+	} //button_container
+	button {
+		display: inline-block;
+		border: none;
+		padding: 0;
+		text-decoration: none;
+		background: transparent;
+		color: var(--text_color_opp);
+		font-size: 0rem;
+		cursor: pointer;
+		text-align: center;
+		transition: .3s all;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		border: 0.125rem solid tint($dark, 20%);
+		width: 3.5rem;
+		height: 3.5rem;
+		position: relative;
+		border-radius: 50%;
+		margin: 1rem calc(var(--gap) / 2) 0;
+		@include lg() {
+			margin: calc(var(--gap) / 2) 0;
+		}
+		//Can these be simplified based on the base svg styles
+		svg {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 50%;
+			.stroke {
+				fill: none;
+				stroke: $white;
+				stroke-width: 2;
+				stroke-miterlimit: 10;
+				transition: .3s all;
+			}
+			.fill {
+				fill: var(--text_color_primary);
+				stroke-miterlimit: 10;
+				transition: .3s all;
+			}
+		}
+		&:hover, &:focus {
+			border: 0.125rem solid var(--text_color_emphasis);
+			transition: .1s all;
+			svg {
+				transform: translate(-50%, -50%) scale(1.05);
+				.stroke {
+					transition: .1s all;
+				}
+				.fill {
+					fill: var(--text_color_emphasis);
+					transition: .1s all;
+				}
+			}
+		}
+	} //button styles
+	.prev_button {
+		@include lg() {
+			transform: rotate(90deg);
+		}
+	}
+	.next_button {
+		@include lg() {
+			transform: rotate(90deg);
+		}
+	}
+	.timer {
+		grid-column: 1 / -1;
+		@include lg() {
+			grid-column: 2 / span 11;
+		}
+		width: 100%;
+		height: 0.125rem;
+		background: var(--text_color_opp);
+		position: relative; 
+		>div {
+			@include image_cover();
+			width: 0;
+			background: var(--text_color_emphasis);
+		}
+	}
+	&.with_columns {
+		padding-top: var(--unit_type_B);
+		padding-bottom: var(--unit_type_B);
+		.slider_block {
+			grid-column: 2 / span 7;
+		}
+		.timer {
+			grid-column: 2 / span 7;
+		}
+		.text_area.block {
+			grid-column: 10 / span 4;
+			grid-row: 1;
+		}
+	}
+} //image--slider
