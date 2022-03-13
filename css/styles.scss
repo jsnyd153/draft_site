@@ -59,3 +59,34 @@ h2 {
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
+
+@media screen and (orientation: portrait) {
+  .wrapper {
+    grid-template-columns: 1fr;
+
+    article {
+      button {
+        &.down {
+          top: auto;
+          bottom: 0;
+        }
+      }
+    }
+  }
+
+  h1 {
+    font-family: $sans;
+    font-weight: 800;
+    font-size: 35vh;
+    color: #fff;
+  }
+
+  h2 {
+    font-family: $sans;
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+}
