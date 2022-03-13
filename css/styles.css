@@ -33,11 +33,40 @@
 }
 
 #teamHome {
-  --background_color: rgb(215, 20, 20, 1);
+  --background_color: radial-gradient(
+    circle,
+    rgba(106, 20, 22, 1) 0%,
+    rgba(251, 29, 29, 1) 100%
+  );
 }
 
 #teamAway {
-  --background_color: rgb(20, 20, 215, 1);
+  --background_color: radial-gradient(
+    circle,
+    rgba(22, 20, 86, 1) 0%,
+    rgba(29, 29, 211, 1) 100%
+  );
+}
+
+#reset {
+  box-sizing: content-box;
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 0.25rem solid rgba(255, 255, 255, 0.5);
+  background-color: #e1e1e1;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+#reset img {
+  width: 100%;
+  opacity: 0.6;
+  display: block;
 }
 
 h1 {
@@ -79,5 +108,11 @@ h2 {
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+  }
+
+  #reset {
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
   }
 }
