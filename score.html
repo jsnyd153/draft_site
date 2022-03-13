@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Jsnyddesign - Home</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,800;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+
+  <body class="">
+    <header>
+      <!-- temporarily added with JS for now -->
+    </header>
+
+    <main class="wrapper">
+      <article id="teamHome" class="score">
+        <h2>home</h2>
+        <h1>0</h1>
+        <button class="up"></button>
+        <button class="down"></button>
+      </article>
+
+      <article id="teamAway" class="score">
+        <h2>Away</h2>
+        <h1>0</h1>
+        <button class="up"></button>
+        <button class="down"></button>
+      </article>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+
+    <!-- append number to the projects in the list -->
+    <script>
+      $(".score").each(function () {
+        let score = 0;
+        $(this).find("h1").html(score);
+
+        $(this)
+          .find(".up")
+          .click(function () {
+            score++;
+            $(this).parent("article").find("h1").html(score);
+          });
+
+        $(this)
+          .find(".down")
+          .click(function () {
+            score--;
+            $(this).parent("article").find("h1").html(score);
+          });
+      });
+    </script>
+  </body>
+</html>
