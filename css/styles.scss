@@ -133,3 +133,12 @@ h2 {
     }
   }
 }
+
+#controls {
+  position: fixed;
+  inset: 1rem;
+  display: flex;
+  height: 100px;
+  width: 100px;
+  background-color: red;
+}

@@ -6,22 +6,28 @@ $(".score").each(function () {
   // by default, it only adds horizontal recognizers
   var mc = new Hammer(this);
   var scoreContainer = $(this);
+  var target = $(this).attr("id");
+
+  var inputControl = $("#controls").find(`[for='${target}']`);
+
+  //swipe Controls
 
   // let the pan gesture support all directions.
   // this will block the vertical scrolling on a touch-device while on the element
   mc.get("swipe").set({ direction: Hammer.DIRECTION_ALL });
 
   mc.on("swipeup", function () {
-    console.log("gesture detected.");
+    console.log(inputControl);
     score++;
     $(scoreContainer).find("h1").html(score);
   });
 
   mc.on("swipedown", function () {
-    console.log(" gesture detected.");
     score--;
     $(scoreContainer).find("h1").html(score);
   });
+
+  // Basic Button Controls
 
   $(this)
     .find(".up")
@@ -40,5 +46,12 @@ $(".score").each(function () {
   $("#reset").click(function () {
     score = 0;
     $("article").find("h1").html(score);
+  });
+
+  //Input controls
+
+  $(inputControl).on("input", function () {
+    score = $(this).val();
+    $(scoreContainer).find("h1").html(score);
   });
 });
