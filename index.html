@@ -9,7 +9,7 @@
       content="width=device-width, initial-scale=1, maximum-scale=1"
     />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>Jsnyddesign - Home</title>
+    <title>Scoreboard</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
@@ -56,34 +56,8 @@
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
-
-    <!-- append number to the projects in the list -->
-    <script>
-      $(".score").each(function () {
-        let score = 0;
-        $(this).find("h1").html(score);
-
-        $(this)
-          .find(".up")
-          .click(function () {
-            score++;
-            $(this).parent("article").find("h1").html(score);
-          });
-
-        $(this)
-          .find(".down")
-          .click(function () {
-            score--;
-            $(this).parent("article").find("h1").html(score);
-          });
-
-        $("#reset").click(function () {
-          score = 0;
-          $("article").find("h1").html(score);
-        });
-      });
-    </script>
+    <script src="js/hammer.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>
