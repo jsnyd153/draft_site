@@ -129,3 +129,6 @@ h2 {
   width: 100px;
   background-color: red;
 }
+#controls input {
+  font-size: 1rem;
+}
