@@ -1,3 +1,7 @@
+body {
+  touch-action: manipulation;
+}
+
 .wrapper {
   position: fixed;
   top: 0;

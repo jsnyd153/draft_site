@@ -1,5 +1,9 @@
 $sans: "Public Sans", sans-serif;
 
+body {
+  touch-action: manipulation;
+}
+
 .wrapper {
   position: fixed;
   top: 0;
