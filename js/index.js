@@ -1,57 +1,92 @@
 $(".score").each(function () {
   let score = 0;
+
   $(this).find("h1").html(score);
 
-  // create a simple instance
-  // by default, it only adds horizontal recognizers
+  // initialize hammer controls
   var mc = new Hammer(this);
+
+  //select this specific container
   var scoreContainer = $(this);
-  var target = $(this).attr("id");
+  //make jquery object out of id
+  var targetID = $(scoreContainer).attr("id");
 
-  var inputControl = $("#controls").find(`[for='${target}']`);
+  // locate the input that controls this one by matching id to "for" attribute
+  var inputControl = $("#controls").find(`[for='${targetID}']`);
 
-  //swipe Controls
+  //set the text disply => run function after scroe counter is updated
+  function updateScoreDisplay() {
+    $(scoreContainer).find("h1").html(score);
+    $(inputControl).val(score);
 
-  // let the pan gesture support all directions.
+    if (score > 99) {
+      $(scoreContainer).css("--digits", "3");
+    } else if (score > 999) {
+      $(scoreContainer).css("--digits", "4");
+    } else {
+      $(scoreContainer).css("--digits", "2");
+    }
+  }
+
+  updateScoreDisplay();
+
+  //Area Swipe Controls
+
+  // pan gesture support all directions.
   // this will block the vertical scrolling on a touch-device while on the element
   mc.get("swipe").set({ direction: Hammer.DIRECTION_ALL });
 
   mc.on("swipeup", function () {
-    console.log(inputControl);
     score++;
-    $(scoreContainer).find("h1").html(score);
+    updateScoreDisplay();
   });
 
   mc.on("swipedown", function () {
     score--;
-    $(scoreContainer).find("h1").html(score);
+    updateScoreDisplay();
   });
 
-  // Basic Button Controls
+  // Button Click Controls
 
   $(this)
     .find(".up")
     .click(function () {
       score++;
-      $(scoreContainer).find("h1").html(score);
+      updateScoreDisplay();
     });
 
   $(this)
     .find(".down")
     .click(function () {
       score--;
-      $(scoreContainer).find("h1").html(score);
+      updateScoreDisplay();
     });
+
+  // Nav Controls
 
   $("#reset").click(function () {
     score = 0;
     $("article").find("h1").html(score);
+    updateScoreDisplay();
   });
 
   //Input controls
 
   $(inputControl).on("input", function () {
-    score = $(this).val();
-    $(scoreContainer).find("h1").html(score);
+    let newValue = $(this).val();
+    console.log(newValue);
+
+    if (newValue.length === 0) {
+      console.log("empty");
+      score = 0;
+    } else {
+      score = newValue;
+    }
+    updateScoreDisplay();
   });
+});
+
+$("#navToggle").click(function () {
+  $(this).toggleClass("navOpen");
+  $("#controls").toggleClass("navOpen");
 });

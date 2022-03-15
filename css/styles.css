@@ -21,6 +21,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
+  --digits: 2;
 }
 .wrapper article button {
   position: absolute;
@@ -55,29 +56,31 @@ body {
 
 #reset {
   box-sizing: content-box;
-  position: fixed;
-  top: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  border: 0.25rem solid rgba(255, 255, 255, 0.5);
-  background-color: #e1e1e1;
+  border: 0.0625rem solid black;
+  background-color: rgba(0, 0, 0, 0.8);
   overflow: hidden;
-  padding: 0;
-  margin: 0;
+  padding: 0.75rem 2rem;
+  margin: 0 0 auto auto;
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 25px;
 }
-#reset img {
-  width: 100%;
-  opacity: 0.6;
+#reset > * {
   display: block;
+}
+#reset svg {
+  width: 2rem;
 }
 
 h1 {
   font-family: "Public Sans", sans-serif;
   font-weight: 800;
-  font-size: 70vh;
+  font-size: calc(140vh / var(--digits));
   color: #fff;
 }
 
@@ -104,6 +107,7 @@ h2 {
     font-weight: 800;
     font-size: 35vh;
     color: #fff;
+    font-size: calc(70vh / var(--digits));
   }
 
   h2 {
@@ -123,12 +127,98 @@ h2 {
 }
 #controls {
   position: fixed;
-  inset: 1rem;
+  max-height: 0;
+  inset: 1.5rem;
   display: flex;
-  height: 100px;
-  width: 100px;
-  background-color: red;
+  border-radius: 0.25rem;
+  background: #f4f4f4;
+  border: 0px solid #fff;
+  box-shadow: 0 1rem 3rem 3rem rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  transition: 0.3s;
+}
+#controls * {
+  transition: 0.3s;
+}
+#controls.navOpen {
+  max-height: 100%;
+  border: 1px solid #fff;
 }
 #controls input {
   font-size: 1rem;
+}
+#controls #scoreControls {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2rem;
+  padding: 2rem;
+}
+#controls input[type=text],
+#controls input[type=color] {
+  display: none;
+}
+#controls input[type=number] {
+  width: 10rem;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  outline: none;
+  border: 0.0625rem solid #000;
+  font-size: 1.5rem;
+  border-radius: 26px;
+}
+
+#navToggle {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, calc(-50% + 1.5rem));
+  top: 0rem;
+  width: 3.75rem;
+  background: #efefef;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1.5rem 0rem rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.625rem;
+  color: #696969;
+  transition: 0.3s all;
+}
+#navToggle * {
+  transition: 0.3s all;
+}
+#navToggle span {
+  display: block;
+  overflow: hidden;
+}
+#navToggle svg {
+  display: block;
+  min-height: 0.375rem;
+  transform: rotate(180deg);
+}
+#navToggle svg * {
+  fill: currentColor;
+}
+#navToggle span:last-child {
+  max-height: 0;
+}
+#navToggle span:first-child {
+  max-height: 1rem;
+}
+#navToggle.navOpen {
+  top: 100%;
+  transform: translate(-50%, calc(-50% - 1.5rem));
+}
+#navToggle.navOpen svg {
+  transform: rotate(0);
+}
+#navToggle.navOpen span:first-child {
+  max-height: 0;
+}
+#navToggle.navOpen span:last-child {
+  max-height: 1rem;
 }

@@ -34,38 +34,96 @@
 
     <main class="wrapper">
       <article id="teamHome" class="score">
-        <h2>home</h2>
+        <h2 class="teamName">home</h2>
         <h1>0</h1>
         <button class="up"></button>
         <button class="down"></button>
       </article>
 
       <article id="teamAway" class="score">
-        <h2>Away</h2>
+        <h2 class="teamName">Away</h2>
         <h1>0</h1>
         <button class="up"></button>
         <button class="down"></button>
       </article>
-
-      <button id="reset">
-        <img
-          src="data:image/png;base64,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"
-          alt="reset"
-        />
-      </button>
     </main>
 
-    <aside id="controls">
-      <input
-        type="number"
-        for="teamHome"
-        id="teamHomeControl"
-        name="homeScore"
-        min="0"
-        max="100"
-        pattern="[0-9]*"
-      />
-    </aside>
+    <nav id="controls" class="">
+      <section id="scoreControls">
+        <article id="settingsTeamHome" class="settings">
+          <input type="text" for="teamHome" name="homeName" />
+
+          <input
+            type="number"
+            for="teamHome"
+            name="homeScore"
+            min="0"
+            max="1000"
+            pattern="[0-9]*"
+          />
+
+          <input type="color" for="teamHome" name="homeColor" value="#e66465" />
+        </article>
+
+        <article id="settingsTeamAway" class="settings">
+          <input type="text" for="teamAway" name="awayName" />
+
+          <input
+            type="number"
+            for="teamAway"
+            name="awayScore"
+            min="0"
+            max="1000"
+            pattern="[0-9]*"
+          />
+
+          <input type="color" for="teamAway" name="awayColor" value="#e66465" />
+        </article>
+
+        <button id="reset">
+          <span>Reset</span
+          ><svg
+            width="33"
+            height="27"
+            viewBox="0 0 33 27"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 13.1951C4 6.45994 9.59507 1 16.4969 1C21.4732 1 25.7702 3.83836 27.7805 7.94659"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-linecap="square"
+            />
+            <path
+              d="M29 13.8049C29 20.5401 23.4049 26 16.5031 26C11.5268 26 7.22981 23.1616 5.21951 19.0534"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-linecap="square"
+            />
+            <path d="M29 12L25 17H33L29 12Z" fill="white" />
+            <path d="M4 15L8 10L4.37114e-07 10L4 15Z" fill="white" />
+          </svg>
+        </button>
+      </section>
+    </nav>
+
+    <button id="navToggle" class="">
+      <span>menu</span>
+      <svg
+        width="10"
+        height="6"
+        viewBox="0 0 10 6"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.84443 0.576149L1.00051 4.67633C0.557204 5.14919 0.892485 5.9231 1.54065 5.9231H9.22848C9.87665 5.9231 10.2119 5.14919 9.76862 4.67633L5.92471 0.576149C5.6322 0.264141 5.13693 0.264142 4.84443 0.576149Z"
+          fill="#696969"
+        />
+      </svg>
+      <span>close</span>
+    </button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
