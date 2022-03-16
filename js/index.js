@@ -1,12 +1,9 @@
 $(".score").each(function () {
   let score = 0;
-
-  $(this).find("h1").html(score);
-
   // initialize hammer controls
   var mc = new Hammer(this);
 
-  //select this specific container
+  //select this specific container to refer to later in functions
   var scoreContainer = $(this);
   //make jquery object out of id
   var targetID = $(scoreContainer).attr("id");
@@ -19,6 +16,7 @@ $(".score").each(function () {
     $(scoreContainer).find("h1").html(score);
     $(inputControl).val(score);
 
+    //set prop based to scale text based on number of digits
     if (score > 99) {
       $(scoreContainer).css("--digits", "3");
     } else if (score > 999) {
@@ -28,6 +26,7 @@ $(".score").each(function () {
     }
   }
 
+  //run update function to set default values
   updateScoreDisplay();
 
   //Area Swipe Controls
@@ -80,12 +79,14 @@ $(".score").each(function () {
       console.log("empty");
       score = 0;
     } else {
-      score = newValue;
+      //parse to remove leading 0s
+      score = parseInt(newValue, 10);
     }
     updateScoreDisplay();
   });
 });
 
+//menu toggle button
 $("#navToggle").click(function () {
   $(this).toggleClass("navOpen");
   $("#controls").toggleClass("navOpen");

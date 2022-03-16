@@ -1,8 +1,20 @@
+:root {
+  --offWhite: rgb(245, 245, 245);
+}
+
+.home {
+  --section_color: rgba(251, 29, 29, 1);
+}
+
+.away {
+  --section_color: rgba(29, 29, 211, 1);
+}
+
 body {
   touch-action: manipulation;
 }
 
-.wrapper {
+main {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,10 +24,11 @@ body {
   grid-template-columns: 1fr 1fr;
   grid-gap: 0.25rem;
 }
-.wrapper article {
+main article {
   width: 100%;
   height: 100%;
-  background: var(--background_color);
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+  background-color: var(--section_color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,7 +36,7 @@ body {
   position: relative;
   --digits: 2;
 }
-.wrapper article button {
+main article button {
   position: absolute;
   top: 0;
   left: 0;
@@ -33,7 +46,7 @@ body {
   border: 0;
   outline: 0;
 }
-.wrapper article button.down {
+main article button.down {
   top: auto;
   bottom: 0;
 }
@@ -55,7 +68,7 @@ body {
 }
 
 #reset {
-  box-sizing: content-box;
+  box-sizing: border-box;
   border: 0.0625rem solid black;
   background-color: rgba(0, 0, 0, 0.8);
   overflow: hidden;
@@ -69,12 +82,6 @@ body {
   align-items: center;
   gap: 0.5rem;
   border-radius: 25px;
-}
-#reset > * {
-  display: block;
-}
-#reset svg {
-  width: 2rem;
 }
 
 h1 {
@@ -126,99 +133,66 @@ h2 {
   }
 }
 #controls {
+  width: 100%;
+  height: 100%;
   position: fixed;
-  max-height: 0;
-  inset: 1.5rem;
-  display: flex;
-  border-radius: 0.25rem;
-  background: #f4f4f4;
-  border: 0px solid #fff;
-  box-shadow: 0 1rem 3rem 3rem rgba(0, 0, 0, 0.25);
-  overflow: hidden;
-  transition: 0.3s;
-}
-#controls * {
-  transition: 0.3s;
-}
-#controls.navOpen {
-  max-height: 100%;
-  border: 1px solid #fff;
-}
-#controls input {
-  font-size: 1rem;
-}
-#controls #scoreControls {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 2rem;
-  padding: 2rem;
-}
-#controls input[type=text],
-#controls input[type=color] {
-  display: none;
-}
-#controls input[type=number] {
-  width: 10rem;
-  padding: 0.75rem 1.5rem;
-  background: transparent;
-  outline: none;
-  border: 0.0625rem solid #000;
-  font-size: 1.5rem;
-  border-radius: 26px;
+  inset: 0;
 }
 
-#navToggle {
-  position: fixed;
-  left: 50%;
-  transform: translate(-50%, calc(-50% + 1.5rem));
-  top: 0rem;
-  width: 3.75rem;
-  background: #efefef;
-  border: 1px solid #ffffff;
-  box-sizing: border-box;
+.modal_box {
+  background-color: white;
+  border: 2px solid var(--offWhite);
   border-radius: 1rem;
-  box-shadow: 0 0.5rem 1.5rem 0rem rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-sizing: content-box;
-  padding: 0.35rem 0.5rem;
-  font-size: 0.625rem;
-  color: #696969;
-  transition: 0.3s all;
+  margin: 2rem;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 4fr 4fr 2fr;
+  gap: 2rem;
 }
-#navToggle * {
-  transition: 0.3s all;
+.modal_box .team_settings {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
 }
-#navToggle span {
+.modal_box .team_settings input {
+  box-sizing: border-box;
+  font-size: 1.125rem;
+  line-height: 1;
+  font-weight: 500;
   display: block;
-  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid black;
+  border-radius: 1.5rem;
+  padding: 0.75rem 1.5rem;
 }
-#navToggle svg {
+.modal_box .team_settings input[type=text] {
+  grid-column: span 2;
+}
+.modal_box .team_settings input[type=number] {
+  --placeholder: value;
+}
+.modal_box .team_settings input[type=color] {
+  display: none;
+}
+.modal_box .team_settings .color_container {
+  box-sizing: border-box;
+  position: relative;
+  width: 3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid black;
+  padding: 0.25rem;
+}
+.modal_box .team_settings .color_container label.for_color {
+  box-sizing: border-box;
+  background-color: var(--section_color);
   display: block;
-  min-height: 0.375rem;
-  transform: rotate(180deg);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
-#navToggle svg * {
-  fill: currentColor;
-}
-#navToggle span:last-child {
-  max-height: 0;
-}
-#navToggle span:first-child {
-  max-height: 1rem;
-}
-#navToggle.navOpen {
-  top: 100%;
-  transform: translate(-50%, calc(-50% - 1.5rem));
-}
-#navToggle.navOpen svg {
-  transform: rotate(0);
-}
-#navToggle.navOpen span:first-child {
-  max-height: 0;
-}
-#navToggle.navOpen span:last-child {
-  max-height: 1rem;
+.modal_box .reset_area {
+  display: block;
 }

@@ -32,15 +32,15 @@
       <!-- temporarily added with JS for now -->
     </header>
 
-    <main class="wrapper">
-      <article id="teamHome" class="score">
+    <main>
+      <article id="teamHome" class="score home">
         <h2 class="teamName">home</h2>
         <h1>0</h1>
         <button class="up"></button>
         <button class="down"></button>
       </article>
 
-      <article id="teamAway" class="score">
+      <article id="teamAway" class="score away">
         <h2 class="teamName">Away</h2>
         <h1>0</h1>
         <button class="up"></button>
@@ -48,11 +48,16 @@
       </article>
     </main>
 
-    <nav id="controls" class="">
-      <section id="scoreControls">
-        <article id="settingsTeamHome" class="settings">
-          <input type="text" for="teamHome" name="homeName" />
-
+    <nav class="navOpen" id="controls">
+      <section class="modal_box">
+        <div class="team_settings home">
+          <input
+            type="text"
+            value="home"
+            maxlength="15"
+            for="teamHome"
+            name="homeName"
+          />
           <input
             type="number"
             for="teamHome"
@@ -61,50 +66,47 @@
             max="1000"
             pattern="[0-9]*"
           />
-
-          <input type="color" for="teamHome" name="homeColor" value="#e66465" />
-        </article>
-
-        <article id="settingsTeamAway" class="settings">
-          <input type="text" for="teamAway" name="awayName" />
-
+          <div class="color_container">
+            <input
+              type="color"
+              for="teamhome"
+              name="homeColor"
+              value="#e66465"
+              id="homeColor"
+            />
+            <label for="homeColor" class="for_color"></label>
+          </div>
+        </div>
+        <div class="team_settings away">
+          <input
+            type="text"
+            value="away"
+            maxlength="15"
+            for="teamAway"
+            name="awayName"
+          />
           <input
             type="number"
             for="teamAway"
-            name="awayScore"
+            name="homeScore"
             min="0"
             max="1000"
             pattern="[0-9]*"
           />
-
-          <input type="color" for="teamAway" name="awayColor" value="#e66465" />
-        </article>
-
-        <button id="reset">
-          <span>Reset</span
-          ><svg
-            width="33"
-            height="27"
-            viewBox="0 0 33 27"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4 13.1951C4 6.45994 9.59507 1 16.4969 1C21.4732 1 25.7702 3.83836 27.7805 7.94659"
-              stroke="white"
-              stroke-width="1.5"
-              stroke-linecap="square"
+          <div class="color_container">
+            <input
+              type="color"
+              for="teamAway"
+              name="awayColor"
+              value="#e66465"
+              id="awayColor"
             />
-            <path
-              d="M29 13.8049C29 20.5401 23.4049 26 16.5031 26C11.5268 26 7.22981 23.1616 5.21951 19.0534"
-              stroke="white"
-              stroke-width="1.5"
-              stroke-linecap="square"
-            />
-            <path d="M29 12L25 17H33L29 12Z" fill="white" />
-            <path d="M4 15L8 10L4.37114e-07 10L4 15Z" fill="white" />
-          </svg>
-        </button>
+            <label for="awayColor" class="for_color"></label>
+          </div>
+        </div>
+        <div class="reset_area">
+          <button id="reset">Reset</button>
+        </div>
       </section>
     </nav>
 
