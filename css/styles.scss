@@ -1,3 +1,37 @@
+//colors
+$color_white: rgba(255, 255, 255, 1);
+$color_grey-100: rgba(249, 249, 249, 1);
+$color_grey-200: rgba(235, 235, 235, 1);
+$color_grey-300: rgba(217, 217, 217, 1);
+$color_grey-400: rgba(196, 196, 196, 1);
+$color_grey-500: #f9f9f9;
+$color_grey-600: rgba(151, 151, 151, 1);
+$color_grey-700: rgba(118, 118, 118, 1);
+$color_grey-800: rgba(66, 66, 66, 1);
+$color_grey-900: rgba(35, 31, 32, 1);
+$color_black: rgba(0, 0, 0, 1);
+
+$color_blue: rgba(0, 102, 235, 1);
+$color_gold: rgba(235, 185, 0, 1);
+$color_red: rgba(235, 70, 0, 1);
+$color_green: rgba(0, 205, 113, 1);
+
+$colors_full: (
+  //   //name                   $main variable        $text color
+  "blue" $color_blue $color_black,
+  "gold" $color_gold $color_black,
+  "red" $color_red $color_black,
+  "green" $color_green $color_black
+);
+
+// color.adjust($color_grey-100, $alpha:-.75);
+
+@each $type in $colors_full {
+  label[for="#{nth($type, 1)}"] {
+    --thisColor: #{nth($type, 2)};
+  }
+}
+
 $sans: "Public Sans", sans-serif;
 
 :root {
@@ -167,6 +201,7 @@ h2 {
   gap: 2rem;
 
   .team_settings {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 1rem;
@@ -177,7 +212,7 @@ h2 {
       line-height: 1;
       font-weight: 500;
       display: block;
-      width: 100%;
+
       margin: 0;
       padding: 0;
 
@@ -187,29 +222,68 @@ h2 {
 
       &[type="text"] {
         grid-column: span 2;
+        width: 100%;
       }
       &[type="number"] {
         --placeholder: value;
-      }
-      &[type="color"] {
-        display: none;
+        width: 100%;
       }
     }
     .color_container {
       box-sizing: border-box;
-      position: relative;
       width: 3rem;
       aspect-ratio: 1;
       border-radius: 50%;
       border: 1px solid rgb(0, 0, 0);
       padding: 0.25rem;
-      label.for_color {
+      .color_dot {
         box-sizing: border-box;
         background-color: var(--section_color);
         display: block;
         width: 100%;
         height: 100%;
         border-radius: 50%;
+
+        @each $type in $colors_full {
+          &.#{nth($type, 1)} {
+            --section_color: #{nth($type, 2)};
+          }
+        }
+      }
+      .color_list {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0 0.5rem 2rem 0 rgb(0, 0, 0, 0.25);
+        border-radius: 0.5rem;
+        padding: 1rem;
+
+        li {
+          border-bottom: 1px solid rgb(225, 225, 225);
+          padding: 0.25rem 0;
+          display: flex;
+          justify-content: space-between;
+          font-size: 1rem;
+          width: 100%;
+          gap: 1rem;
+          input[mask-type="radio"] {
+          }
+          label {
+            font-family: $sans;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            &::after {
+              content: "";
+              width: 2rem;
+              height: 1rem;
+              display: block;
+              background-color: var(--thisColor);
+              border: 1px solid rgb(125, 125, 125);
+            }
+          }
+        }
       }
     }
   } //teamsettings
