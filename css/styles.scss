@@ -27,7 +27,8 @@ $colors_full: (
 // color.adjust($color_grey-100, $alpha:-.75);
 
 @each $type in $colors_full {
-  label[for="#{nth($type, 1)}"] {
+  label[for="#{nth($type, 1)}Away"],
+  label[for="#{nth($type, 1)}Home"] {
     --thisColor: #{nth($type, 2)};
   }
 }
@@ -38,13 +39,13 @@ $sans: "Public Sans", sans-serif;
   --offWhite: rgb(245, 245, 245);
 }
 
-.home {
-  --section_color: rgba(251, 29, 29, 1);
-}
+// .home {
+//   --section_color: rgba(251, 29, 29, 1);
+// }
 
-.away {
-  --section_color: rgba(29, 29, 211, 1);
-}
+// .away {
+//   --section_color: rgba(29, 29, 211, 1);
+// }
 
 body {
   touch-action: manipulation;
@@ -59,10 +60,20 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 0.25rem;
+  transition: 0.3s all;
+  &.navOpen {
+    background-color: rgb(0, 0, 0);
+    filter: blur(0.5rem);
+
+    article {
+      opacity: 0.8;
+    }
+  }
 
   article {
     width: 100%;
     height: 100%;
+    transition: 0.3s all;
     background-image: radial-gradient(
       circle,
       rgba(0, 0, 0, 0.7) 0%,
@@ -75,6 +86,12 @@ main {
     justify-content: center;
     position: relative;
     --digits: 2;
+
+    @each $type in $colors_full {
+      &.#{nth($type, 1)} {
+        --section_color: #{nth($type, 2)};
+      }
+    }
 
     button {
       position: absolute;
@@ -142,64 +159,42 @@ h2 {
   letter-spacing: 0.1em;
 }
 
-@media screen and (orientation: portrait) {
-  .wrapper {
-    grid-template-columns: 1fr;
-
-    article {
-      button {
-        &.down {
-          top: auto;
-          bottom: 0;
-        }
-      }
-    }
-  }
-
-  h1 {
-    font-family: $sans;
-    font-weight: 800;
-    font-size: 35vh;
-    color: #fff;
-    font-size: calc(70vh / var(--digits));
-  }
-
-  h2 {
-    font-family: $sans;
-    font-weight: 600;
-    font-size: 1.25rem;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  #reset {
-    top: 50%;
-    left: 1rem;
-    transform: translateY(-50%);
-
-    img {
-    }
-  }
-}
-
 #controls {
   width: 100%;
   height: 100%;
   position: fixed;
   inset: 0;
+  max-height: 0%;
+  overflow: hidden;
+  transition: 0.3s all;
+  * {
+    transition: 0.3s all;
+  }
+
+  .modal_box {
+    // opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  &.navOpen {
+    max-height: 100%;
+
+    .modal_box {
+      // opacity: 1;
+      transform: translateY(0%);
+    }
+  }
 }
 
 .modal_box {
   background-color: rgb(255, 255, 255);
   border: 2px solid var(--offWhite);
   border-radius: 1rem;
-  margin: 2rem;
-  padding: 2rem;
+  margin: 1.5rem;
+  padding: 1.5rem;
   display: grid;
   grid-template-columns: 4fr 4fr 2fr;
   gap: 2rem;
-
   .team_settings {
     position: relative;
     display: grid;
@@ -250,147 +245,112 @@ h2 {
           }
         }
       }
-      .color_list {
+
+      form {
         position: absolute;
+        width: 100%;
+        max-height: 0;
+        opacity: 1;
+        transform: translateY(3rem);
+        overflow: hidden;
+        transition: 0.3s all;
         width: 100%;
         left: 0;
         background-color: rgb(255, 255, 255);
         box-shadow: 0 0.5rem 2rem 0 rgb(0, 0, 0, 0.25);
         border-radius: 0.5rem;
-        padding: 1rem;
+        padding: 0rem 1rem;
 
-        li {
-          border-bottom: 1px solid rgb(225, 225, 225);
-          padding: 0.25rem 0;
-          display: flex;
-          justify-content: space-between;
-          font-size: 1rem;
-          width: 100%;
-          gap: 1rem;
-          input[mask-type="radio"] {
-          }
-          label {
-            font-family: $sans;
+        .color_list {
+          max-height: 35vh;
+          overflow: scroll;
+          li {
+            border-bottom: 1px solid rgb(225, 225, 225);
+            padding: 0.25rem 0;
             display: flex;
             justify-content: space-between;
+            font-size: 1rem;
             width: 100%;
-            &::after {
-              content: "";
-              width: 2rem;
-              height: 1rem;
-              display: block;
-              background-color: var(--thisColor);
-              border: 1px solid rgb(125, 125, 125);
+            gap: 1rem;
+
+            label {
+              font-family: $sans;
+              display: flex;
+              justify-content: space-between;
+              width: 100%;
+              &::after {
+                content: "";
+                width: 2rem;
+                height: 1rem;
+                display: block;
+                background-color: var(--thisColor);
+                border: 1px solid rgb(125, 125, 125);
+              }
             }
           }
         }
       }
-    }
+
+      &.isOpen {
+        form {
+          max-height: 100vh;
+          opacity: 1;
+          transform: translateY(1rem);
+          padding: 1rem;
+        }
+      }
+    } //container
   } //teamsettings
   .reset_area {
     display: block;
   }
 }
 
-// #controls {
-//   position: fixed;
-//   max-height: 0;
-//   inset: 1.5rem;
-//   display: flex;
-//   border-radius: 0.25rem;
-//   background: #f4f4f4;
-//   border: 0px solid #fff;
-//   box-shadow: 0 1rem 3rem 3rem rgb(0, 0, 0, 0.25);
-//   overflow: hidden;
-//   transition: 0.3s;
-//   * {
-//     transition: 0.3s;
-//   }
-//   &.navOpen {
-//     max-height: 100%;
-//     border: 1px solid #fff;
-//   }
-//   input {
-//     font-size: 1rem;
-//   }
+#navToggle {
+  --size_button: 3rem;
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: var(--size_button);
+  height: var(--size_button);
+  border-radius: 50%;
+  border: 1px solid #fff;
+  background: #fafafa;
+  box-shadow: 0 0.5rem 0.5rem 0rem rgb(0, 0, 0, 0.15);
+  transition: 0.3s all;
 
-//   #scoreControls {
-//     display: grid;
-//     grid-template-columns: 1fr 1fr 1fr;
-//     grid-gap: 2rem;
-//     padding: 2rem;
-//   }
+  span {
+    --size_dots: 0.375rem;
+    --gap: 0.375rem;
+    display: block;
+    width: var(--size_dots);
+    height: var(--size_dots);
+    border-radius: calc(var(--size_dots) / 2);
+    background: rgb(100, 100, 100);
+    position: absolute;
+    top: 50%;
+    left: 50%;
 
-//   input[type="text"],
-//   input[type="color"] {
-//     display: none;
-//   }
+    &:nth-child(1) {
+      transform: translate(calc(-50% + var(--gap) + var(--size_dots)), -50%);
+    }
+    &:nth-child(2) {
+      transform: translate(-50%, -50%);
+    }
+    &:nth-child(3) {
+      transform: translate(calc(-50% - var(--gap) - var(--size_dots)), -50%);
+    }
 
-//   input[type="number"] {
-//     width: 10rem;
-//     padding: 0.75rem 1.5rem;
-//     background: transparent;
-//     outline: none;
-//     border: 0.0625rem solid #000;
-//     font-size: 1.5rem;
-//     border-radius: 26px;
-//   }
-// }
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        --position: #{$i};
+      }
+    } //for
+  }
 
-// #navToggle {
-//   position: fixed;
-//   left: 50%;
-//   transform: translate(-50%, calc(-50% + 1.5rem));
-//   top: 0rem;
-//   width: 3.75rem;
-//   background: #efefef;
-//   border: 1px solid #ffffff;
-//   box-sizing: border-box;
-//   border-radius: 1rem;
-//   box-shadow: 0 0.5rem 1.5rem 0rem rgba(0, 0, 0, 0.25);
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   box-sizing: content-box;
-//   padding: 0.35rem 0.5rem;
-//   font-size: 0.625rem;
-//   color: #696969;
-
-//   transition: 0.3s all;
-//   * {
-//     transition: 0.3s all;
-//   }
-//   span {
-//     display: block;
-//     overflow: hidden;
-//   }
-
-//   svg {
-//     display: block;
-//     min-height: 0.375rem;
-//     transform: rotate(180deg);
-//     * {
-//       fill: currentColor;
-//     }
-//   }
-//   span:last-child {
-//     max-height: 0;
-//   }
-//   span:first-child {
-//     max-height: 1rem;
-//   }
-//   &.navOpen {
-//     top: 100%;
-//     transform: translate(-50%, calc(-50% - 1.5rem));
-//     svg {
-//       transform: rotate(0);
-//     }
-//     span:first-child {
-//       max-height: 0;
-//     }
-//     span:last-child {
-//       max-height: 1rem;
-//     }
-//   }
-// }
+  .navOpen + & {
+    top: calc(100% - 1rem);
+    transform: translate(-50%, -100%);
+  }
+}

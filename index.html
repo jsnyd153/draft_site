@@ -30,97 +30,26 @@
   </head>
 
   <body class="">
-    <header>
-      <!-- temporarily added with JS for now -->
-    </header>
-
-    <main>
-      <article id="teamHome" class="score home">
+    <main class="">
+      <article id="teamHome" class="score home" team="Home">
         <h2 class="teamName">home</h2>
-        <h1>0</h1>
+        <h1></h1>
         <button class="up"></button>
         <button class="down"></button>
       </article>
 
-      <article id="teamAway" class="score away">
+      <article id="teamAway" class="score away" team="Away">
         <h2 class="teamName">Away</h2>
-        <h1>0</h1>
+        <h1></h1>
         <button class="up"></button>
         <button class="down"></button>
       </article>
     </main>
 
-    <nav class="navOpen" id="controls">
+    <nav class="" id="controls">
       <section class="modal_box">
-        <div class="team_settings home">
-          <input
-            type="text"
-            value="home"
-            maxlength="15"
-            for="teamHome"
-            name="homeName"
-          />
-          <input
-            type="number"
-            for="teamHome"
-            name="homeScore"
-            min="0"
-            max="1000"
-            pattern="[0-9]*"
-          />
-          <div class="color_container">
-            <div class="color_dot"></div>
-          </div>
-        </div>
-
-        <div class="team_settings away">
-          <input
-            type="text"
-            value="away"
-            maxlength="15"
-            for="teamAway"
-            name="awayName"
-          />
-          <input
-            type="number"
-            for="teamAway"
-            name="homeScore"
-            min="0"
-            max="1000"
-            pattern="[0-9]*"
-          />
-          <div class="color_container">
-            <div class="color_dot"></div>
-            <form id="colorChange">
-              <ul class="colorPanel color_list">
-                <li>
-                  <input
-                    type="radio"
-                    id="green"
-                    name="colorHome"
-                    value="green"
-                    checked
-                  />
-                  <label for="green">green</label>
-                </li>
-
-                <li>
-                  <input type="radio" id="blue" name="colorHome" value="blue" />
-                  <label for="blue">blue</label>
-                </li>
-                <li>
-                  <input type="radio" id="gold" name="colorHome" value="gold" />
-                  <label for="gold">gold</label>
-                </li>
-
-                <li>
-                  <input type="radio" id="red" name="colorHome" value="red" />
-                  <label for="red">red</label>
-                </li>
-              </ul>
-            </form>
-          </div>
-        </div>
+        <div class="team_settings home" team="Home"></div>
+        <div class="team_settings away" team="Away"></div>
         <div class="reset_area">
           <button id="reset">Reset</button>
         </div>
@@ -128,20 +57,9 @@
     </nav>
 
     <button id="navToggle" class="">
-      <span>menu</span>
-      <svg
-        width="10"
-        height="6"
-        viewBox="0 0 10 6"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.84443 0.576149L1.00051 4.67633C0.557204 5.14919 0.892485 5.9231 1.54065 5.9231H9.22848C9.87665 5.9231 10.2119 5.14919 9.76862 4.67633L5.92471 0.576149C5.6322 0.264141 5.13693 0.264142 4.84443 0.576149Z"
-          fill="#696969"
-        />
-      </svg>
-      <span>close</span>
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
