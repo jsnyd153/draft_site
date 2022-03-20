@@ -1,54 +1,16 @@
-//colors
-$color_white: rgba(255, 255, 255, 1);
-$color_grey-100: rgba(249, 249, 249, 1);
-$color_grey-200: rgba(235, 235, 235, 1);
-$color_grey-300: rgba(217, 217, 217, 1);
-$color_grey-400: rgba(196, 196, 196, 1);
-$color_grey-500: #f9f9f9;
-$color_grey-600: rgba(151, 151, 151, 1);
-$color_grey-700: rgba(118, 118, 118, 1);
-$color_grey-800: rgba(66, 66, 66, 1);
-$color_grey-900: rgba(35, 31, 32, 1);
-$color_black: rgba(0, 0, 0, 1);
+@use 'abstracts' as *;
+@use 'components' as *;
+// @use 'blocks';
 
-$color_blue: rgba(0, 102, 235, 1);
-$color_gold: rgba(235, 185, 0, 1);
-$color_red: rgba(235, 70, 0, 1);
-$color_green: rgba(0, 205, 113, 1);
-
-$colors_full: (
-  //   //name                   $main variable        $text color
-  "blue" $color_blue $color_black,
-  "gold" $color_gold $color_black,
-  "red" $color_red $color_black,
-  "green" $color_green $color_black
-);
-
-// color.adjust($color_grey-100, $alpha:-.75);
-
-@each $type in $colors_full {
-  label[for="#{nth($type, 1)}Away"],
-  label[for="#{nth($type, 1)}Home"] {
-    --thisColor: #{nth($type, 2)};
-  }
-}
-
-$sans: "Public Sans", sans-serif;
-
-:root {
-  --offWhite: rgb(245, 245, 245);
-}
-
-// .home {
-//   --section_color: rgba(251, 29, 29, 1);
-// }
-
-// .away {
-//   --section_color: rgba(29, 29, 211, 1);
-// }
 
 body {
   touch-action: manipulation;
+}
+
+:root {
+  @each $type in $colors_neutral {
+    --#{nth($type, 1)}: #{nth($type, 2)};
+  }
 }
 
 main {
@@ -64,7 +26,6 @@ main {
   &.navOpen {
     background-color: rgb(0, 0, 0);
     filter: blur(0.5rem);
-
     article {
       opacity: 0.8;
     }
@@ -87,12 +48,12 @@ main {
     position: relative;
     --digits: 2;
 
-    @each $type in $colors_full {
+    @each $type in $colors_list {
       &.#{nth($type, 1)} {
         --section_color: #{nth($type, 2)};
       }
     }
-
+    //celar buttons for score controls
     button {
       position: absolute;
       top: 0;
@@ -110,55 +71,6 @@ main {
   }
 }
 
-#teamHome {
-  --background_color: radial-gradient(
-    circle,
-    rgba(106, 20, 22, 1) 0%,
-    rgba(251, 29, 29, 1) 100%
-  );
-}
-
-#teamAway {
-  --background_color: radial-gradient(
-    circle,
-    rgba(22, 20, 86, 1) 0%,
-    rgba(29, 29, 211, 1) 100%
-  );
-}
-
-#reset {
-  box-sizing: border-box;
-  border: 0.0625rem solid rgb(0, 0, 0, 1);
-  background-color: rgb(0, 0, 0, 0.8);
-  overflow: hidden;
-  padding: 0.75rem 2rem;
-  margin: 0 0 auto auto;
-  color: #fff;
-  font-size: 1.5rem;
-  line-height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  border-radius: 25px;
-}
-
-h1 {
-  font-family: $sans;
-  font-weight: 800;
-  font-size: calc(140vh / var(--digits));
-  color: #fff;
-}
-
-h2 {
-  font-family: $sans;
-  font-weight: 600;
-  font-size: 1.25rem;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
 #controls {
   width: 100%;
   height: 100%;
@@ -170,187 +82,14 @@ h2 {
   * {
     transition: 0.3s all;
   }
-
   .modal_box {
-    // opacity: 0;
     transform: translateY(-100%);
   }
-
   &.navOpen {
     max-height: 100%;
-
     .modal_box {
-      // opacity: 1;
       transform: translateY(0%);
     }
-  }
-}
+  }//navopen
+}//controls
 
-.modal_box {
-  background-color: rgb(255, 255, 255);
-  border: 2px solid var(--offWhite);
-  border-radius: 1rem;
-  margin: 1.5rem;
-  padding: 1.5rem;
-  display: grid;
-  grid-template-columns: 4fr 4fr 2fr;
-  gap: 2rem;
-  .team_settings {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 1rem;
-
-    input {
-      box-sizing: border-box;
-      font-size: 1.125rem;
-      line-height: 1;
-      font-weight: 500;
-      display: block;
-
-      margin: 0;
-      padding: 0;
-
-      border: 1px solid rgb(0, 0, 0);
-      border-radius: 1.5rem;
-      padding: 0.75rem 1.5rem;
-
-      &[type="text"] {
-        grid-column: span 2;
-        width: 100%;
-      }
-      &[type="number"] {
-        --placeholder: value;
-        width: 100%;
-      }
-    }
-    .color_container {
-      box-sizing: border-box;
-      width: 3rem;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      border: 1px solid rgb(0, 0, 0);
-      padding: 0.25rem;
-      .color_dot {
-        box-sizing: border-box;
-        background-color: var(--section_color);
-        display: block;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-
-        @each $type in $colors_full {
-          &.#{nth($type, 1)} {
-            --section_color: #{nth($type, 2)};
-          }
-        }
-      }
-
-      form {
-        position: absolute;
-        width: 100%;
-        max-height: 0;
-        opacity: 1;
-        transform: translateY(3rem);
-        overflow: hidden;
-        transition: 0.3s all;
-        width: 100%;
-        left: 0;
-        background-color: rgb(255, 255, 255);
-        box-shadow: 0 0.5rem 2rem 0 rgb(0, 0, 0, 0.25);
-        border-radius: 0.5rem;
-        padding: 0rem 1rem;
-
-        .color_list {
-          max-height: 35vh;
-          overflow: scroll;
-          li {
-            border-bottom: 1px solid rgb(225, 225, 225);
-            padding: 0.25rem 0;
-            display: flex;
-            justify-content: space-between;
-            font-size: 1rem;
-            width: 100%;
-            gap: 1rem;
-
-            label {
-              font-family: $sans;
-              display: flex;
-              justify-content: space-between;
-              width: 100%;
-              &::after {
-                content: "";
-                width: 2rem;
-                height: 1rem;
-                display: block;
-                background-color: var(--thisColor);
-                border: 1px solid rgb(125, 125, 125);
-              }
-            }
-          }
-        }
-      }
-
-      &.isOpen {
-        form {
-          max-height: 100vh;
-          opacity: 1;
-          transform: translateY(1rem);
-          padding: 1rem;
-        }
-      }
-    } //container
-  } //teamsettings
-  .reset_area {
-    display: block;
-  }
-}
-
-#navToggle {
-  --size_button: 3rem;
-  position: fixed;
-  top: 1rem;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: var(--size_button);
-  height: var(--size_button);
-  border-radius: 50%;
-  border: 1px solid #fff;
-  background: #fafafa;
-  box-shadow: 0 0.5rem 0.5rem 0rem rgb(0, 0, 0, 0.15);
-  transition: 0.3s all;
-
-  span {
-    --size_dots: 0.375rem;
-    --gap: 0.375rem;
-    display: block;
-    width: var(--size_dots);
-    height: var(--size_dots);
-    border-radius: calc(var(--size_dots) / 2);
-    background: rgb(100, 100, 100);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    &:nth-child(1) {
-      transform: translate(calc(-50% + var(--gap) + var(--size_dots)), -50%);
-    }
-    &:nth-child(2) {
-      transform: translate(-50%, -50%);
-    }
-    &:nth-child(3) {
-      transform: translate(calc(-50% - var(--gap) - var(--size_dots)), -50%);
-    }
-
-    @for $i from 1 through 3 {
-      &:nth-child(#{$i}) {
-        --position: #{$i};
-      }
-    } //for
-  }
-
-  .navOpen + & {
-    top: calc(100% - 1rem);
-    transform: translate(-50%, -100%);
-  }
-}

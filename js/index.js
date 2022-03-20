@@ -8,7 +8,7 @@ $(".team_settings").each(function () {
     `<input
     type="text"
     value="${teamName}"
-    maxlength="15"
+    maxlength="22"
     for="team${teamName}"
     name="${sectionName}Name"
   />`
@@ -40,7 +40,7 @@ $(".score").each(function () {
 
   function updateScoreDisplay() {
     $(scoreContainer).find("h1").html(score);
-    $(`input[name="score${sectionName}"]`).val(score);
+    $(`input[name="score${teamName}"]`).val(score);
 
     //set prop based to scale text based on number of digits
     if (score > 99) {
@@ -89,6 +89,22 @@ $(".score").each(function () {
       decreaseScore();
     });
 
+// //update score when inputs are updated
+
+  $(`input[name="score${teamName}"]`).on("input", function () {
+    let newValue = $(this).val();
+    console.log(newValue);
+
+    if (newValue.length === 0) {
+      console.log("empty");
+      score = 0;
+    } else {
+      //parse to remove leading 0s
+      score = parseInt(newValue, 10);
+    }
+    updateScoreDisplay();
+  });
+
   //reset
   $("#reset").click(function () {
     score = 0;
@@ -119,25 +135,55 @@ $(".color_container").each(function () {
       colorName: "red",
     },
     {
-      colorName: "pink",
+      colorName: "bittersweet",
+    },
+    {
+      colorName: "crimson",
+    },
+    {
+      colorName: "orange",
+    },
+    {
+      colorName: "apricot",
     },
     {
       colorName: "gold",
     },
     {
-      colorName: "blue",
+        colorName: "yellow",
     },
     {
-      colorName: "green",
+        colorName: "lemon",
     },
     {
-      colorName: "black",
+        colorName: "lime",
     },
     {
-      colorName: "silver",
+        colorName: "green",
     },
     {
-      colorName: "orange",
+        colorName: "spring_green",
+    },
+    {
+        colorName: "electric_blue",
+    },
+    {
+        colorName: "sky_blue",
+    },
+    {
+        colorName: "blue",
+    },
+    {
+        colorName: "violet",
+    },
+    {
+        colorName: "magenta",
+    },
+    {
+        colorName: "rose",
+    },
+    {
+        colorName: "hot_pink",
     },
   ];
 
@@ -168,7 +214,7 @@ $(".color_container").each(function () {
   });
 
   //set default cheked values
-  $(".team_settings.home").find('input[value="red"]').prop("checked", true);
+  $(".team_settings.home").find('input[value="crimson"]').prop("checked", true);
   $(".team_settings.away").find('input[value="blue"]').prop("checked", true);
 
   let selectedColor = $(this).find('input[type="radio"]:checked').val();
@@ -195,9 +241,32 @@ $(".color_container").each(function () {
   setNewColorValue();
 });
 
+// ============================================================= Name Feature
+
+$('h2.teamName').each(function(){
+
+  let nameString = $(this).html();
+  const nameDisplay = $(this);
+  const nameInput = $(this).parent('article').attr('id');
+
+  function updateNameDisplay() {
+   $(nameDisplay).html(nameString)
+  }
+
+  $(`input[for="${nameInput}"]`).on("input", function () {
+    let newValue = $(this).val();
+     nameString = newValue;
+    console.log(nameString)
+    updateNameDisplay();
+  });
+
+});
+
 // ============================================================= menu toggle button
 $("#navToggle").click(function () {
   $(this).toggleClass("navOpen");
   $("#controls").toggleClass("navOpen");
   $("main").toggleClass("navOpen");
 });
+
+
