@@ -78,6 +78,7 @@ input[type="text"], input[type="number"]{
               justify-content: space-between;
               width: 100%;
               padding: 0.45rem .25rem;
+              text-transform: capitalize;
               span{
                   flex-grow:1;
                   display: block;

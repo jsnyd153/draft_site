@@ -9,6 +9,10 @@ h1{
     font-weight: 800;
     font-size: calc(140vh / var(--digits));
     color: var(--white);
+
+    @include vertical() {
+        font-size: calc(80vh / var(--digits));
+      }
 }
 
 h2{

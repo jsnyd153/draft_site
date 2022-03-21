@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 // reset button
 
 #reset {
@@ -15,6 +17,10 @@
     align-items: center;
     gap: 0.5rem;
     border-radius: 25px;
+
+    @include vertical() {
+      margin: auto;
+    }
   }
   
 
@@ -37,6 +43,12 @@
   background: var(--grey-100);
   box-shadow: 0 0.5rem 0.5rem 0rem rgb(0, 0, 0, 0.15);
   transition: 0.3s all;
+
+  @include vertical() {
+   left:1rem;
+   transform: translate(0%, 0);
+  }
+
   *{
     transition: 0.3s all;
   }
@@ -85,6 +97,12 @@
   .navOpen + & {
     top: calc(100% - 1rem);
     transform: translate(-50%, -100%);
+
+
+    @include vertical() {
+      transform: translate(0%, -100%);
+    }
+
 
     span{
       &:nth-child(1) {
