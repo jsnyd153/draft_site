@@ -1,1 +1,25 @@
-html,*{font-family:"Public Sans",sans-serif}h1{font-family:"Public Sans",sans-serif;font-weight:800;font-size:calc(140vh/var(--digits));color:var(--white)}@media(orientation: portrait){h1{font-size:calc(80vh/var(--digits))}}h2{font-family:"Public Sans",sans-serif;font-weight:600;font-size:1.25rem;color:var(--white);text-transform:uppercase;letter-spacing:.1em}
+html,
+* {
+  font-family: "Public Sans", sans-serif;
+}
+
+h1 {
+  font-family: "Public Sans", sans-serif;
+  font-weight: 800;
+  font-size: calc(55vw / var(--digits));
+  color: var(--white);
+}
+@media (orientation: portrait) {
+  h1 {
+    font-size: calc(100vw / var(--digits));
+  }
+}
+
+h2 {
+  font-family: "Public Sans", sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}

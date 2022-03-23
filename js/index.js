@@ -43,12 +43,14 @@ $(".score").each(function () {
     $(`input[name="score${teamName}"]`).val(score);
 
     //set prop based to scale text based on number of digits
-    if (score > 99) {
-      $(scoreContainer).css("--digits", "3");
-    } else if (score > 999) {
-      $(scoreContainer).css("--digits", "4");
-    } else {
+    if (score < 10) {
+      $(scoreContainer).css("--digits", "1.5");
+    } else if (score < 100) {
       $(scoreContainer).css("--digits", "2");
+    } else if (score < 1000) {
+      $(scoreContainer).css("--digits", "3");
+    } else {
+      $(scoreContainer).css("--digits", "4");
     }
   }
 
@@ -89,7 +91,7 @@ $(".score").each(function () {
       decreaseScore();
     });
 
-// //update score when inputs are updated
+  // //update score when inputs are updated
 
   $(`input[name="score${teamName}"]`).on("input", function () {
     let newValue = $(this).val();
@@ -133,7 +135,8 @@ $(".color_container").each(function () {
     {
       slug: "maroon",
       colorName: "maroon",
-    },    {
+    },
+    {
       slug: "red",
       colorName: "red",
     },
@@ -145,72 +148,71 @@ $(".color_container").each(function () {
       slug: "orange",
       colorName: "orange",
     },
-  
+
     {
       slug: "gold",
       colorName: "gold",
     },
     {
       slug: "yellow",
-        colorName: "yellow",
+      colorName: "yellow",
     },
     {
       slug: "lemon",
-        colorName: "lemon",
+      colorName: "lemon",
     },
     {
       slug: "lime",
-        colorName: "lime",
-
+      colorName: "lime",
     },
     {
       slug: "green",
-        colorName: "green",
+      colorName: "green",
     },
     {
       slug: "spring_green",
-        colorName: "spring green",
+      colorName: "spring green",
     },
     {
       slug: "electric_blue",
-        colorName: "electric blue",
+      colorName: "electric blue",
     },
     {
       slug: "sky_blue",
-        colorName: "sky blue",
+      colorName: "sky blue",
     },
     {
       slug: "blue",
-        colorName: "blue",
+      colorName: "blue",
     },
     {
       slug: "navy",
       colorName: "navy",
-  },
+    },
     {
       slug: "violet",
-        colorName: "violet",
+      colorName: "violet",
     },
     {
       slug: "magenta",
-        colorName: "magenta",
+      colorName: "magenta",
     },
     {
       slug: "rose",
-        colorName: "rose",
+      colorName: "rose",
     },
     {
       slug: "hot_pink",
-        colorName: "hot pink",
+      colorName: "hot pink",
     },
     {
       slug: "black",
       colorName: "black",
-  },
-  {
-    colorName: "grey",
-    colorName: "grey",
-},
+    },
+    {
+      colorName: "grey",
+      colorName: "grey",
+    },
   ];
 
   $(this).append(
@@ -223,7 +225,6 @@ $(".color_container").each(function () {
 
   var cList = $(this).find(".color_list");
   $.each(colorsOptions, function (i, e) {
-
     var li = $("<li/>").appendTo(cList);
     var inputs = $("<input/>")
       .attr("type", "radio")
@@ -235,13 +236,9 @@ $(".color_container").each(function () {
     var labels = $("<label/>")
       .attr("for", e.slug + team)
       .appendTo(li);
-      var text = $("<span/>")
-      .text(e.colorName)
-      .appendTo(labels);
-      
+    var text = $("<span/>").text(e.colorName).appendTo(labels);
 
     //cList.append(item);
-
   });
 
   //set default cheked values
@@ -272,26 +269,23 @@ $(".color_container").each(function () {
   setNewColorValue();
 });
 
-
 // ============================================================= Name Feature
 
-$('h2.teamName').each(function(){
-
+$("h2.teamName").each(function () {
   let nameString = $(this).html();
   const nameDisplay = $(this);
-  const nameInput = $(this).parent('article').attr('id');
+  const nameInput = $(this).parent("article").attr("id");
 
   function updateNameDisplay() {
-   $(nameDisplay).html(nameString)
+    $(nameDisplay).html(nameString);
   }
 
   $(`input[for="${nameInput}"][type="text"]`).on("input", function () {
     let newNameValue = $(this).val();
-     nameString = newNameValue;
-    console.log(nameString)
+    nameString = newNameValue;
+    console.log(nameString);
     updateNameDisplay();
   });
-
 });
 
 // ============================================================= menu toggle button
@@ -300,5 +294,3 @@ $("#navToggle").click(function () {
   $("#controls").toggleClass("navOpen");
   $("main").toggleClass("navOpen");
 });
-
-

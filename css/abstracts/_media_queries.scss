@@ -1,0 +1,50 @@
+// media queries
+
+$sm-width: 576px;
+$md-width: 768px;
+$lg-width: 1024px;
+$xl-width: 1280px;
+$xxl-width: 1440px;
+$cap-width: 1600px;
+
+@mixin sm {
+  @media (min-width: #{$sm-width}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: #{$md-width}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: #{$lg-width}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: #{$xl-width}) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  @media (min-width: #{$xxl-width}){
+    @content;
+  }
+}
+
+@mixin cap {
+  @media (min-width: #{$cap-width}){
+    @content;
+  }
+}
+
+@mixin vertical {
+    @media (orientation: portrait) {
+        @content;
+      }
+}
