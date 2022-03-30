@@ -1,131 +1,124 @@
-@use '../abstracts' as *;
+@use "../abstracts" as *;
 
-input[type="text"], input[type="number"]{
-    box-sizing: border-box;
-    font-size: 1.125rem;
-    line-height: 1;
-    font-weight: 500;
-    display: block;
-    width: 100%;
-    margin: 0;
-    padding: 0;
+input[type="text"],
+input[type="number"] {
+  box-sizing: border-box;
+  font-size: 1.125rem;
+  line-height: 1;
+  font-weight: 500;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 1.5rem;
-    padding: 0.75rem 1.5rem;
-
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 1.5rem;
+  padding: 0.75rem 1.5rem;
 }
-
 
 //color input
 
-.color_container{
+.color_container {
+  box-sizing: border-box;
+  width: 3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid rgb(0, 0, 0);
+  padding: 0.25rem;
+
+  .color_dot {
     box-sizing: border-box;
-    width: 3rem;
-    aspect-ratio: 1;
+    background-color: var(--section_color);
+    display: block;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
-    border: 1px solid rgb(0, 0, 0);
-    padding: 0.25rem;
 
-    .color_dot{
-        box-sizing: border-box;
-        background-color: var(--section_color);
-        display: block;
+    @each $type in $colors_list {
+      &.#{nth($type, 1)} {
+        --section_color: #{nth($type, 2)};
+      }
+    }
+  } //color dot
+
+  form {
+    position: absolute;
+    width: 100%;
+    max-height: 0;
+    opacity: 1;
+    transform: translateY(3rem);
+    overflow: hidden;
+    transition: 0.3s all;
+    width: 100%;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0.5rem 2rem 0 rgb(0, 0, 0, 0.25);
+    border-radius: 0.5rem;
+    padding: 0rem 1rem;
+    z-index: 100;
+    .color_list {
+      max-height: 35vh;
+      overflow: scroll;
+      li {
+        border-bottom: 1px solid rgb(225, 225, 225);
+        display: flex;
+        justify-content: space-between;
+        font-size: 1rem;
         width: 100%;
-        height: 100%;
-        border-radius: 50%;
+        gap: 1rem;
 
-        @each $type in $colors_list {
-            &.#{nth($type, 1)} {
-              --section_color: #{nth($type, 2)};
-            }
+        input {
+          display: none;
+        }
+        label {
+          font-family: $sans_font;
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          padding: 0.45rem 0.25rem;
+          text-transform: capitalize;
+          span {
+            flex-grow: 1;
+            display: block;
+            margin-left: 0.5rem;
           }
-    }//color dot
+          &::after {
+            content: "";
+            width: 2rem;
+            height: 1rem;
+            display: block;
+            background-color: var(--thisColor);
+            border: 1px solid rgb(125, 125, 125);
+          }
+          &::before {
+            content: "✓";
+            display: block;
+            opacity: 0;
+          }
+        } //label
+        input:checked + label {
+          background-color: rgb(0, 0, 0, 0.1);
+          &:before {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  } //form
 
-
+  &.isOpen {
     form {
-        position: absolute;
-        width: 100%;
-        max-height: 0;
-        opacity: 1;
-        transform: translateY(3rem);
-        overflow: hidden;
-        transition: 0.3s all;
-        width: 100%;
-        left: 0;
-        background-color: rgb(255, 255, 255);
-        box-shadow: 0 0.5rem 2rem 0 rgb(0, 0, 0, 0.25);
-        border-radius: 0.5rem;
-        padding: 0rem 1rem;
-
-        .color_list {
-          max-height: 35vh;
-          overflow: scroll;
-          li {
-            border-bottom: 1px solid rgb(225, 225, 225);
-            display: flex;
-            justify-content: space-between;
-            font-size: 1rem;
-            width: 100%;
-            gap: 1rem;
-
-            input{
-                display: none;
-            }
-            label {
-              font-family: $sans_font;
-              display: flex;
-              justify-content: space-between;
-              width: 100%;
-              padding: 0.45rem .25rem;
-              text-transform: capitalize;
-              span{
-                  flex-grow:1;
-                  display: block;
-                  margin-left: .5rem;
-              }
-              &::after {
-                content: "";
-                width: 2rem;
-                height: 1rem;
-                display: block;
-                background-color: var(--thisColor);
-                border: 1px solid rgb(125, 125, 125);
-              }
-              &::before{
-                  content:"✓";
-                  display: block;
-                  opacity: 0;
-              }
-            }//label
-            input:checked + label{
-                
-                background-color: rgb(0, 0, 0,.1);
-                &:before{
-                    opacity: 1;
-                }
-             }
-          }
-        }
-      }//form
-
-      &.isOpen {
-        form {
-          max-height: 100vh;
-          opacity: 1;
-          transform: translateY(1rem);
-          padding: 1rem;
-        }
-      }
-
-//loop for list of colors
-      @each $type in $colors_list {
-        input[value="#{nth($type, 1)}"] + label{
-            --thisColor: #{nth($type, 2)};
+      max-height: 100vh;
+      opacity: 1;
+      transform: translateY(1rem);
+      padding: 1rem;
+    }
   }
-      }
 
-
-}//color container
-
-
+  //loop for list of colors
+  @each $type in $colors_list {
+    input[value="#{nth($type, 1)}"] + label {
+      --thisColor: #{nth($type, 2)};
+    }
+  }
+} //color container

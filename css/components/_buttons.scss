@@ -2,7 +2,8 @@
 
 // reset button
 
-#reset {
+#reset,
+#rotate {
   box-sizing: border-box;
   border: 0 solid rgb(0, 0, 0, 1);
   box-shadow: inset 1px -1px 1px 0 rgb(0, 0, 0),
@@ -24,7 +25,9 @@
     margin: auto;
   }
 }
-
+#rotate {
+  margin-top: 1rem;
+}
 //nav open/close button
 
 #navToggle {
@@ -93,12 +96,12 @@
   }
 
   .navOpen + & {
-    top: calc(100% - 1rem);
-    transform: translate(-50%, -100%);
+    // top: calc(100% - 1rem);
+    // transform: translate(-50%, -100%);
 
-    @include vertical() {
-      transform: translate(0%, -100%);
-    }
+    // @include vertical() {
+    //   transform: translate(0%, -100%);
+    // }
 
     span {
       &:nth-child(1) {

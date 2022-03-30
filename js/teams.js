@@ -1,7 +1,17 @@
-// $(document).ready(function () {
-//   var iframeDOM = $("#opensportData").contents();
+function readTextFile(file, callback) {
+  var rawFile = new XMLHttpRequest();
+  rawFile.overrideMimeType("application/json");
+  rawFile.open("GET", file, true);
+  rawFile.onreadystatechange = function () {
+    if (rawFile.readyState === 4 && rawFile.status == "200") {
+      callback(rawFile.responseText);
+    }
+  };
+  rawFile.send(null);
+}
 
-//   var __NEXT_DATA__ = iframeDOM.find("#__NEXT_DATA__");
-
-//   $("body").appendTo(__NEXT_DATA__);
-// });
+//usage:
+readTextFile("js/opensports_data.json", function (text) {
+  var data = JSON.parse(text);
+  console.log(data);
+});

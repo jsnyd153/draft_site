@@ -6,6 +6,10 @@ body {
   touch-action: manipulation;
 }
 
+main.flipped {
+  transform: rotate(180deg);
+}
+
 :root {
   @each $type in $colors_neutral {
     --#{nth($type, 1)}: #{nth($type, 2)};
@@ -80,7 +84,8 @@ main {
   width: 100%;
   height: 100%;
   position: fixed;
-  inset: 0;
+  bottom: 0;
+  left: 0;
   max-height: 0%;
   overflow: hidden;
   transition: 0.3s all;
@@ -88,12 +93,12 @@ main {
     transition: 0.3s all;
   }
   .modal_box {
-    transform: translateY(-100%);
+    transform: translateY(100%);
   }
   &.navOpen {
     max-height: 100%;
     .modal_box {
-      transform: translateY(0%);
+      transform: translateY(10%);
     }
   } //navopen
 } //controls

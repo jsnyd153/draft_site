@@ -288,9 +288,23 @@ $("h2.teamName").each(function () {
   });
 });
 
+// ============================================================= rotate button button
+
+$("#rotate").click(function () {
+  $("main").toggleClass("flipped");
+});
+
 // ============================================================= menu toggle button
+
+function toggleNavState() {
+  $("#navToggl, #controls, main").toggleClass("navOpen");
+}
+
 $("#navToggle").click(function () {
-  $(this).toggleClass("navOpen");
-  $("#controls").toggleClass("navOpen");
-  $("main").toggleClass("navOpen");
+  toggleNavState();
+});
+
+$("#controls").click(function (e) {
+  if (e.target != this) return;
+  toggleNavState();
 });

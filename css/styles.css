@@ -25,7 +25,8 @@ h2 {
   letter-spacing: 0.1em;
 }
 
-#reset {
+#reset,
+#rotate {
   box-sizing: border-box;
   border: 0 solid black;
   box-shadow: inset 1px -1px 1px 0 black, inset 0 1px 1px 0 #f0f0f0;
@@ -43,9 +44,14 @@ h2 {
   border-radius: 25px;
 }
 @media (orientation: portrait) {
-  #reset {
+  #reset,
+#rotate {
     margin: auto;
   }
+}
+
+#rotate {
+  margin-top: 1rem;
 }
 
 #navToggle {
@@ -111,15 +117,6 @@ h2 {
 #navToggle span:nth-child(3) {
   left: calc(50% + var(--size_dots) + var(--gap));
 }
-.navOpen + #navToggle {
-  top: calc(100% - 1rem);
-  transform: translate(-50%, -100%);
-}
-@media (orientation: portrait) {
-  .navOpen + #navToggle {
-    transform: translate(0%, -100%);
-  }
-}
 .navOpen + #navToggle span:nth-child(1) {
   left: 50%;
 }
@@ -136,9 +133,12 @@ h2 {
 }
 
 .modal_box {
+  position: absolute;
+  width: calc(100% - 6rem);
+  bottom: 0;
   border-radius: 1rem;
-  margin: 1.5rem;
-  padding: 1.5rem;
+  margin: 0 1.5rem;
+  padding: 1.5rem 1.5rem 8rem 1.5rem;
   display: grid;
   grid-template-columns: 4fr 4fr 2fr;
   gap: 2rem;
@@ -160,7 +160,8 @@ h2 {
   grid-column: span 2;
 }
 
-input[type=text], input[type=number] {
+input[type=text],
+input[type=number] {
   box-sizing: border-box;
   font-size: 1.125rem;
   line-height: 1;
@@ -264,6 +265,7 @@ input[type=text], input[type=number] {
   box-shadow: 0 0.5rem 2rem 0 rgba(0, 0, 0, 0.25);
   border-radius: 0.5rem;
   padding: 0rem 1rem;
+  z-index: 100;
 }
 .color_container form .color_list {
   max-height: 35vh;
@@ -381,6 +383,10 @@ input[type=text], input[type=number] {
 
 body {
   touch-action: manipulation;
+}
+
+main.flipped {
+  transform: rotate(180deg);
 }
 
 :root {
@@ -513,7 +519,8 @@ main article button.down {
   width: 100%;
   height: 100%;
   position: fixed;
-  inset: 0;
+  bottom: 0;
+  left: 0;
   max-height: 0%;
   overflow: hidden;
   transition: 0.3s all;
@@ -522,11 +529,11 @@ main article button.down {
   transition: 0.3s all;
 }
 #controls .modal_box {
-  transform: translateY(-100%);
+  transform: translateY(100%);
 }
 #controls.navOpen {
   max-height: 100%;
 }
 #controls.navOpen .modal_box {
-  transform: translateY(0%);
+  transform: translateY(10%);
 }

@@ -1,4 +1,5 @@
-#reset {
+#reset,
+#rotate {
   box-sizing: border-box;
   border: 0 solid black;
   box-shadow: inset 1px -1px 1px 0 black, inset 0 1px 1px 0 #f0f0f0;
@@ -16,9 +17,14 @@
   border-radius: 25px;
 }
 @media (orientation: portrait) {
-  #reset {
+  #reset,
+#rotate {
     margin: auto;
   }
+}
+
+#rotate {
+  margin-top: 1rem;
 }
 
 #navToggle {
@@ -83,15 +89,6 @@
 }
 #navToggle span:nth-child(3) {
   left: calc(50% + var(--size_dots) + var(--gap));
-}
-.navOpen + #navToggle {
-  top: calc(100% - 1rem);
-  transform: translate(-50%, -100%);
-}
-@media (orientation: portrait) {
-  .navOpen + #navToggle {
-    transform: translate(0%, -100%);
-  }
 }
 .navOpen + #navToggle span:nth-child(1) {
   left: 50%;
