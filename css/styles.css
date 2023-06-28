@@ -161,7 +161,7 @@ button {
  border: 0;
  display: flex;
  --background: #ffffff;
- font-size: 1.25rem;
+ --size: 1em;
 }
 [data-scoring=rally] #sideout--indicator {
  display: none;
