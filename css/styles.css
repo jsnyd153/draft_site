@@ -2,6 +2,10 @@ body {
  touch-action: manipulation;
 }
 
+button {
+ color: #585858;
+}
+
 :root {
  --white: rgb(255, 255, 255);
  --grey-100: rgb(249, 249, 249);
@@ -157,7 +161,7 @@ body {
  border: 0;
  display: flex;
  --background: #ffffff;
- --size: 1em;
+ font-size: 1.25rem;
 }
 [data-scoring=rally] #sideout--indicator {
  display: none;

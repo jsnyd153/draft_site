@@ -6,6 +6,9 @@ body {
 	touch-action: manipulation;
 }
 
+button {
+	color: #585858;
+}
 :root {
 	@each $type in $colors_neutral {
 		--#{nth($type, 1)}: #{nth($type, 2)};
@@ -158,7 +161,7 @@ body {
 	border: 0;
 	display: flex;
 	--background: #ffffff;
-	--size: 1em;
+	font-size: 1.25rem;
 
 	[data-scoring="rally"] & {
 		display: none;
